@@ -1,8 +1,9 @@
 
 package com.portfoliojr.jr.Dto;
 
-import java.util.logging.Logger;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
+//import java.util.logging.Logger;
+//import javax.validation.constraints.NotBlank;
 
 
 public class dtoHys {

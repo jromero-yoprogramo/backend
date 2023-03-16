@@ -1,7 +1,8 @@
 
 package com.portfoliojr.jr.Dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 
 public class dtoPersona {
     @NotBlank
