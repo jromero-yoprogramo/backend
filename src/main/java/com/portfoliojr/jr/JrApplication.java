@@ -5,15 +5,15 @@ package com.portfoliojr.jr;
 //import java.util.concurrent.ScheduledFuture;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+//import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 //import org.springframework.scheduling.Trigger;
 //import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
-@EnableAutoConfiguration(exclude = {UserDetailsServiceAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude = {UserDetailsServiceAutoConfiguration.class})
 @SpringBootApplication 
 public class JrApplication {
 
