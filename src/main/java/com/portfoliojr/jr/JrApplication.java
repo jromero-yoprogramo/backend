@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //@EnableAutoConfiguration(exclude = {UserDetailsServiceAutoConfiguration.class})
 @SpringBootApplication 
+
 public class JrApplication {
 
     public static void main(String[] args) {

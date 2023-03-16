@@ -140,11 +140,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!--             <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                <argLine>-Dfile.encoding=UTF-8</argLine>
-                </configuration>-->
+                <configuration>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                </configuration>
             </plugin>
         </plugins>
     </build>  
