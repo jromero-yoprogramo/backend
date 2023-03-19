@@ -5,23 +5,24 @@ package com.portfoliojr.jr;
 //import java.util.concurrent.ScheduledFuture;
 
 import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
-//import org.springframework.scheduling.Trigger;
-//import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//@EnableAutoConfiguration(exclude = {UserDetailsServiceAutoConfiguration.class})
-@SpringBootApplication 
-@Configuration
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+
+
+@SpringBootApplication(scanBasePackages={"com.portfolio.jr"})
+//@Configuration
+//@ComponentScan("com.portfoliojr.jr.Repository")
+//@EnableJpaRepositories("com.portfoliojr.jr.Repository")
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,WebMvcAutoConfiguration.class})
 public class JrApplication {
+
 
     public static void main(String[] args) {
        
