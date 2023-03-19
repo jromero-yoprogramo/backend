@@ -1,8 +1,6 @@
 package com.portfoliojr.jr;
 
-//import java.util.HashSet;
-//import java.util.Set;
-//import java.util.concurrent.ScheduledFuture;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
