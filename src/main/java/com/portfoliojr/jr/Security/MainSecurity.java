@@ -24,11 +24,11 @@ public class MainSecurity {
     @Autowired
 //    JwtEntryPoint jwtEntryPoint;
 
-//    @Bean
-//    public JwtTokenFilter jwtTokenFilter() {
-//        return new JwtTokenFilter();
-//    }
-//
+    @Bean
+    public JwtTokenFilter jwtTokenFilter() {
+        return new JwtTokenFilter();
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
