@@ -13,7 +13,6 @@ com\portfoliojr\jr\Service\ImpPersonaService.class
 com\portfoliojr\jr\Security\Repository\iRolRepository.class
 com\portfoliojr\jr\Entity\Proyecto.class
 com\portfoliojr\jr\Dto\dtoExperiencia.class
-com\portfoliojr\jr\Entity\Persona_.class
 com\portfoliojr\jr\Controller\CHys.class
 com\portfoliojr\jr\Security\Repository\iUsuarioRepository.class
 com\portfoliojr\jr\Security\Dto\JwtDto.class
