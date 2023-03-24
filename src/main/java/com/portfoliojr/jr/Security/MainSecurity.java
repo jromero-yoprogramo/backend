@@ -54,9 +54,8 @@ public class MainSecurity {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors(withDefaults())
                 .csrf().disable()
-                //              .authorizeRequests()
-                .authorizeHttpRequests()
-                //              .antMatchers("**").permitAll()
+                .authorizeRequests()
+                .requestMatchers("**").permitAll()
                 .requestMatchers("**").permitAll()
                 .anyRequest().authenticated()
                 .and()
