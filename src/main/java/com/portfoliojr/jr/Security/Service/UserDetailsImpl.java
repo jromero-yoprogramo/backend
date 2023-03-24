@@ -2,7 +2,8 @@ package com.portfoliojr.jr.Security.Service;
 
 import com.portfoliojr.jr.Security.Entity.Usuario;
 import com.portfoliojr.jr.Security.Entity.UsuarioPrincipal;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
+//import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
