@@ -3,6 +3,8 @@ package com.portfoliojr.jr.Security;
 import com.portfoliojr.jr.Security.Service.UserDetailsImpl;
 import com.portfoliojr.jr.Security.jwt.JwtEntryPoint;
 import com.portfoliojr.jr.Security.jwt.JwtTokenFilter;
+import java.time.Duration;
+import java.util.Arrays;
 //import java.time.Duration;
 //import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 //import org.springframework.web.cors.CorsConfiguration;
 //import org.springframework.web.cors.CorsConfigurationSource;
 //import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -33,7 +38,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class MainSecurity extends WebSecurityConfigurerAdapter{
 //public class MainSecurity {
     @Autowired
-    UserDetailsImpl userDetailsServicesImpl;
+    UserDetailsImpl userDetailsServiceImpl;
     
     
     @Autowired
@@ -58,7 +63,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
@@ -67,20 +72,20 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration cc = new CorsConfiguration();
-//        cc.setAllowedHeaders(Arrays.asList("Origin,Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"));
-//        cc.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-//        cc.setAllowedOrigins(Arrays.asList("/*"));
-//        cc.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT", "PATCH"));
-//        cc.addAllowedOrigin("*");
-//        cc.setMaxAge(Duration.ZERO);
-//        cc.setAllowCredentials(Boolean.TRUE);
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", cc);
-//        return source;
-//    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration cc = new CorsConfiguration().applyPermitDefaultValues();
+        cc.setAllowedHeaders(Arrays.asList("Origin,Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"));
+        cc.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+        cc.setAllowedOrigins(Arrays.asList("/*"));
+        cc.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT", "PATCH"));
+        cc.addAllowedOrigin("*");
+        cc.setMaxAge(Duration.ZERO);
+        cc.setAllowCredentials(Boolean.TRUE);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", cc);
+        return source;
+    }
 
 //    @Override
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -117,6 +122,6 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServicesImpl).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
     } 
 }
