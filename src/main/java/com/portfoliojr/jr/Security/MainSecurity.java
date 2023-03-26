@@ -3,7 +3,6 @@ package com.portfoliojr.jr.Security;
 import com.portfoliojr.jr.Security.Service.UserDetailsImpl;
 import com.portfoliojr.jr.Security.jwt.JwtEntryPoint;
 import com.portfoliojr.jr.Security.jwt.JwtTokenFilter;
-import java.time.Duration;
 import java.util.Arrays;
 //import java.time.Duration;
 //import java.util.Arrays;
@@ -32,14 +31,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 //import org.springframework.web.cors.CorsConfigurationSource;
 //import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+
 public class MainSecurity extends WebSecurityConfigurerAdapter{
 //public class MainSecurity {
+ 
     @Autowired
     UserDetailsImpl userDetailsServiceImpl;
-    
+   
     
     @Autowired
     JwtEntryPoint jwtEntryPoint;
@@ -61,7 +63,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
+        http.cors()
+                .and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("**").permitAll()
                 .anyRequest().authenticated()
@@ -72,20 +75,31 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration cc = new CorsConfiguration().applyPermitDefaultValues();
+//        cc.setAllowedHeaders(Arrays.asList("Origin,Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"));
+//        cc.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+//        cc.setAllowedOrigins(Arrays.asList("/*"));
+//        cc.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT", "PATCH"));
+//        cc.addAllowedOrigin("*");
+//        cc.setMaxAge(Duration.ZERO);
+//        cc.setAllowCredentials(Boolean.TRUE);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", cc);
+//        return source;
+//    }
+    
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration cc = new CorsConfiguration().applyPermitDefaultValues();
-        cc.setAllowedHeaders(Arrays.asList("Origin,Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"));
-        cc.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-        cc.setAllowedOrigins(Arrays.asList("/*"));
-        cc.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT", "PATCH"));
-        cc.addAllowedOrigin("*");
-        cc.setMaxAge(Duration.ZERO);
-        cc.setAllowCredentials(Boolean.TRUE);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", cc);
-        return source;
-    }
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200"));
+                configuration.addAllowedOrigin("*");
+		configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 
 //    @Override
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
